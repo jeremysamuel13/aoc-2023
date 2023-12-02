@@ -8,6 +8,7 @@ version = "0.1.0"
 dependencies = [
  "aoc_core",
  "day1",
+ "day2",
 ]
 
 [[package]]
@@ -19,6 +20,14 @@ dependencies = [
 
 [[package]]
 name = "day1"
+version = "0.1.0"
+dependencies = [
+ "aoc_core",
+ "serde",
+]
+
+[[package]]
+name = "day2"
 version = "0.1.0"
 dependencies = [
  "aoc_core",

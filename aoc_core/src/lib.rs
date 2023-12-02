@@ -22,7 +22,8 @@ pub struct Answer<A, B> {
 
 impl<A, B> Answer<A, B> {
     pub fn print_answer(&self) {
-        println!("Printing answer not implemented yet!!!!");
+        println!("Part 1:\n{}", self.p1.answer);
+        println!("Part 2:\n{}", self.p2.answer);
     }
 }
 
@@ -44,7 +45,6 @@ pub struct Input {
 
 impl Input {
     pub fn lines(&self) -> Result<Flatten<Lines<BufReader<File>>>, AOCError> {
-        println!("{:?}", self.path.to_str());
         let file = File::open(self.path.clone()).unwrap();
         let reader = BufReader::new(file);
 

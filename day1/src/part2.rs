@@ -45,7 +45,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_input() -> Result<(), AOCError> {
+    fn test_part_2() -> Result<(), AOCError> {
         let input = "two1nine
         eightwothree
         abcone2threexyz

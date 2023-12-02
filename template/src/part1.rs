@@ -20,7 +20,12 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test() {
-        assert_eq!(1, 1)
+    fn test_part_1() -> Result<(), AOCError> {
+        let input = "";
+
+        let mut parsed = Part1::parse_from_str(input.lines())?;
+        assert_eq!(parsed.solve()?, "");
+
+        Ok(())
     }
 }

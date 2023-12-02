@@ -7,8 +7,6 @@ pub fn main() {
 
     let day = &args[1];
 
-    println!("Running day {day}");
-
     let mut sols = days!(Day1);
     sols.get_mut(day)
         .unwrap()
