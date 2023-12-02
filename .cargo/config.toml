@@ -1,2 +1,3 @@
 [alias]
-aoc = "generate --path template"
+gen = "generate --path template"
+day = "run --"
