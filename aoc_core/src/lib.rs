@@ -13,21 +13,26 @@ use std::{
 use thiserror::Error;
 
 pub struct AnswerInner<T> {
-    pub answer: String,
+    pub answer: AOCResult<String>,
     pub parsing: ParsedInput<T>,
     pub time: Duration,
+}
+
+impl<T> AnswerInner<T> {
+    pub fn print_answer<const PART: u8>(&self) {
+        println!(
+            "Part {PART}:\n{}",
+            self.answer
+                .as_ref()
+                .map(|v| v.to_owned())
+                .unwrap_or_else(|e| format!("Error running part 1: {e}"))
+        );
+    }
 }
 
 pub struct Answer<A, B> {
     pub p1: AnswerInner<A>,
     pub p2: AnswerInner<B>,
-}
-
-impl<A, B> Answer<A, B> {
-    pub fn print_answer(&self) {
-        println!("Part 1:\n{}", self.p1.answer);
-        println!("Part 2:\n{}", self.p2.answer);
-    }
 }
 
 pub struct ParsedInput<T> {
@@ -79,29 +84,34 @@ pub trait Solution {
         let input1 = Input {
             path: inp1.canonicalize().expect("Invalid path"),
         };
-        let input2 = Input {
-            path: inp2.canonicalize().expect("Invalid path"),
-        };
 
         //Part 1
         let inp1 = self.parse_inp::<Self::Input1>(input1)?;
         let p1d = Instant::now();
-        let ans1 = self.part_1(inp1.input.clone())?;
+        let ans1 = self.part_1(inp1.input.clone());
         let p1 = AnswerInner {
-            answer: ans1.into(),
+            answer: ans1,
             parsing: inp1,
             time: p1d.elapsed(),
+        };
+
+        p1.print_answer::<1>();
+
+        let input2 = Input {
+            path: inp2.canonicalize().expect("Invalid path"),
         };
 
         //Part 2
         let inp2 = self.parse_inp::<Self::Input2>(input2)?;
         let p2d = Instant::now();
-        let ans2 = self.part_2(inp2.input.clone())?;
+        let ans2 = self.part_2(inp2.input.clone());
         let p2 = AnswerInner {
-            answer: ans2.into(),
+            answer: ans2,
             parsing: inp2,
             time: p2d.elapsed(),
         };
+
+        p2.print_answer::<2>();
 
         Ok(Answer { p1, p2 })
     }
