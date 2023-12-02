@@ -4,13 +4,13 @@ use aoc_core::*;
 pub struct Part2 {}
 
 impl ParseInput for Part2 {
-    fn parse_from<T: Iterator<Item = String>>(input: T) -> Result<Self, AOCError> {
+    fn parse_from<T: Iterator<Item = String>>(input: T) -> AOCResult<Self> {
         todo!()
     }
 }
 
 impl Part2 {
-    pub fn solve(&mut self) -> Result<String, AOCError> {
+    pub fn solve(&mut self) -> AOCResult<String> {
         todo!()
     }
 }
@@ -20,7 +20,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_part_2() -> Result<(), AOCError> {
+    fn test_part_2() -> AOCResult<()> {
         let input = "";
 
         let mut parsed = Part2::parse_from_str(input.lines())?;

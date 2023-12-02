@@ -2,12 +2,15 @@
 pub mod macros;
 
 use std::{
+    error,
     fs::{read_to_string, File},
     io::{BufRead, BufReader, Lines},
     iter::Flatten,
     path::PathBuf,
     time::{Duration, Instant},
 };
+
+use thiserror::Error;
 
 pub struct AnswerInner<T> {
     pub answer: String,
@@ -32,11 +35,7 @@ pub struct ParsedInput<T> {
     pub parse_time: Duration,
 }
 
-#[derive(Debug)]
-pub enum AOCError {
-    ReadFileError,
-    LogicError,
-}
+pub type AOCResult<T> = anyhow::Result<T>;
 
 #[derive(Clone)]
 pub struct Input {
@@ -44,15 +43,15 @@ pub struct Input {
 }
 
 impl Input {
-    pub fn lines(&self) -> Result<Flatten<Lines<BufReader<File>>>, AOCError> {
+    pub fn lines(&self) -> AOCResult<Flatten<Lines<BufReader<File>>>> {
         let file = File::open(self.path.clone()).unwrap();
         let reader = BufReader::new(file);
 
         Ok(reader.lines().flatten())
     }
 
-    pub fn as_string(&self) -> Result<String, AOCError> {
-        read_to_string(self.path.clone()).map_err(|_| AOCError::ReadFileError)
+    pub fn as_string(&self) -> AOCResult<String> {
+        Ok(read_to_string(self.path.clone())?)
     }
 }
 
@@ -62,10 +61,10 @@ pub trait Solution {
 
     const DAY: usize;
 
-    fn part_1(&self, input: Self::Input1) -> Result<String, AOCError>;
-    fn part_2(&self, input: Self::Input2) -> Result<String, AOCError>;
+    fn part_1(&self, input: Self::Input1) -> AOCResult<String>;
+    fn part_2(&self, input: Self::Input2) -> AOCResult<String>;
 
-    fn parse_inp<T: ParseInput + Clone>(&self, input: Input) -> Result<ParsedInput<T>, AOCError> {
+    fn parse_inp<T: ParseInput + Clone>(&self, input: Input) -> AOCResult<ParsedInput<T>> {
         let now = Instant::now();
 
         let input = T::parse_from(input.lines()?)?;
@@ -75,11 +74,7 @@ pub trait Solution {
         Ok(ParsedInput { input, parse_time })
     }
 
-    fn solve(
-        &self,
-        inp1: PathBuf,
-        inp2: PathBuf,
-    ) -> Result<Answer<Self::Input1, Self::Input2>, AOCError> {
+    fn solve(&self, inp1: PathBuf, inp2: PathBuf) -> AOCResult<Answer<Self::Input1, Self::Input2>> {
         //Read input
         let input1 = Input {
             path: inp1.canonicalize().expect("Invalid path"),
@@ -116,9 +111,9 @@ pub trait ParseInput
 where
     Self: Sized,
 {
-    fn parse_from<T: Iterator<Item = String>>(input: T) -> Result<Self, AOCError>;
+    fn parse_from<T: Iterator<Item = String>>(input: T) -> AOCResult<Self>;
 
-    fn parse_from_str<'a, T: Iterator<Item = &'a str>>(input: T) -> Result<Self, AOCError> {
+    fn parse_from_str<'a, T: Iterator<Item = &'a str>>(input: T) -> AOCResult<Self> {
         Self::parse_from(input.map(|v| v.to_owned()))
     }
 }

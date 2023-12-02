@@ -6,7 +6,7 @@ pub struct Part1 {
 }
 
 impl ParseInput for Part1 {
-    fn parse_from<T: Iterator<Item = String>>(input: T) -> Result<Self, AOCError> {
+    fn parse_from<T: Iterator<Item = String>>(input: T) -> AOCResult<Self> {
         Ok(Self {
             lines: input.collect(),
         })
@@ -14,7 +14,7 @@ impl ParseInput for Part1 {
 }
 
 impl Part1 {
-    pub fn solve(&mut self) -> Result<String, AOCError> {
+    pub fn solve(&mut self) -> AOCResult<String> {
         Ok(self
             .lines
             .iter()
@@ -35,7 +35,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_part_1() -> Result<(), AOCError> {
+    fn test_part_1() -> AOCResult<()> {
         let input = "1abc2
         pqr3stu8vwx
         a1b2c3d4e5f

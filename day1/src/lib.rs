@@ -13,11 +13,11 @@ impl Solution for Day1 {
 
     const DAY: usize = 1;
 
-    fn part_1(&self, mut input: Self::Input1) -> Result<String, AOCError> {
+    fn part_1(&self, mut input: Self::Input1) -> AOCResult<String> {
         input.solve()
     }
 
-    fn part_2(&self, mut input: Self::Input2) -> Result<String, AOCError> {
+    fn part_2(&self, mut input: Self::Input2) -> AOCResult<String> {
         input.solve()
     }
 }

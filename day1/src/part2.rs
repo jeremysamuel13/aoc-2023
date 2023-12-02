@@ -6,7 +6,7 @@ pub struct Part2 {
 }
 
 impl ParseInput for Part2 {
-    fn parse_from<T: Iterator<Item = String>>(input: T) -> Result<Self, AOCError> {
+    fn parse_from<T: Iterator<Item = String>>(input: T) -> AOCResult<Self> {
         Ok(Self {
             lines: input.collect(),
         })
@@ -14,7 +14,7 @@ impl ParseInput for Part2 {
 }
 
 impl Part2 {
-    pub fn solve(&mut self) -> Result<String, AOCError> {
+    pub fn solve(&mut self) -> AOCResult<String> {
         const NUMS: [&'static str; 10] = [
             "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
         ];
@@ -45,7 +45,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_part_2() -> Result<(), AOCError> {
+    fn test_part_2() -> AOCResult<()> {
         let input = "two1nine
         eightwothree
         abcone2threexyz
