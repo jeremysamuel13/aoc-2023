@@ -1,0 +1,4 @@
+[placeholders.day]
+type = "string"
+prompt = "What day is it"
+regex = "^[0-9]+$"

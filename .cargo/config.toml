@@ -1,0 +1,2 @@
+[alias]
+aoc = "generate --path template"
