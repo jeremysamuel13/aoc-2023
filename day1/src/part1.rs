@@ -23,7 +23,7 @@ impl Part1 {
 
                 let first = line_iter.next().expect("Need at least one number");
                 let last = line_iter.next_back().unwrap_or(first); // `line_iter.next_back()` is better but not implemented for this iter smh
-                return first * 10 + last;
+                first * 10 + last
             })
             .sum::<u32>()
             .to_string())

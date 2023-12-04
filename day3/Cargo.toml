@@ -1,5 +1,5 @@
 [package]
-name = "day1"
+name = "day3"
 version = "0.1.0"
 edition = "2021"
 description = ""
@@ -9,3 +9,5 @@ authors = ["jeremysamuel13 <70209502+jeremysamuel13@users.noreply.github.com>"]
 
 [dependencies]
 aoc_core = { path = "../aoc_core" }
+derive_more = "0.99.17"
+itertools = "0.12.0"

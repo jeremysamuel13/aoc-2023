@@ -10,20 +10,20 @@ pub struct Part1 {
 #[derive(Clone, Debug)]
 pub struct Game {
     pub id: u32,
-    pub subsets: Vec<RGB>,
+    pub subsets: Vec<Rgb>,
 }
 
 #[derive(Clone, Debug, Default)]
-pub struct RGB {
+pub struct Rgb {
     pub red: u32,
     pub green: u32,
     pub blue: u32,
 }
 
-impl Add<&RGB> for RGB {
-    type Output = RGB;
+impl Add<&Rgb> for Rgb {
+    type Output = Rgb;
 
-    fn add(self, rhs: &RGB) -> Self::Output {
+    fn add(self, rhs: &Rgb) -> Self::Output {
         Self::Output {
             green: self.green + rhs.green,
             blue: self.blue + rhs.blue,
@@ -55,26 +55,26 @@ impl ParseInput for Part1 {
 impl Part1 {
     fn parse_game(s: String) -> Game {
         let s = s.trim();
-        let (game_prefix, subsets) = s.split_once(":").expect("No colon?");
+        let (game_prefix, subsets) = s.split_once(':').expect("No colon?");
         let id = game_prefix["Game ".len()..]
             .parse::<u32>()
             .expect("Failed to parse id");
 
-        let subsets = subsets.trim().split(";").map(Self::parse_subset).collect();
+        let subsets = subsets.trim().split(';').map(Self::parse_subset).collect();
 
         Game { id, subsets }
     }
 
-    fn parse_subset(s: &str) -> RGB {
-        s.split(",")
-            .map(|ss| ss.trim().split_once(" ").expect("Failed to split"))
+    fn parse_subset(s: &str) -> Rgb {
+        s.split(',')
+            .map(|ss| ss.trim().split_once(' ').expect("Failed to split"))
             .map(|(count, color)| {
                 (
                     count.parse::<u32>().expect("Failed to parse"),
                     Color::from_str(color).expect("Failed to parse"),
                 )
             })
-            .fold(RGB::default(), |mut acc, (count, color)| {
+            .fold(Rgb::default(), |mut acc, (count, color)| {
                 match color {
                     Color::Blue => acc.blue += count,
                     Color::Red => acc.red += count,

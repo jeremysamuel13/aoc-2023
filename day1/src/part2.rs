@@ -15,7 +15,7 @@ impl ParseInput for Part2 {
 
 impl Part2 {
     pub fn solve(&mut self) -> AOCResult<String> {
-        const NUMS: [&'static str; 10] = [
+        const NUMS: [&str; 10] = [
             "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
         ];
 
@@ -33,7 +33,7 @@ impl Part2 {
 
                 let first = line_iter.next().expect("Need at least one number");
                 let last = line_iter.last().unwrap_or(first); // `line_iter.next_back()` is better but not implemented for this iter smh
-                return first * 10 + last;
+                first * 10 + last
             })
             .sum::<u32>()
             .to_string())

@@ -1,6 +1,6 @@
 use aoc_core::*;
 
-use crate::part1::{Game, Part1, RGB};
+use crate::part1::{Game, Part1, Rgb};
 
 #[derive(Clone)]
 pub struct Part2 {
@@ -8,8 +8,8 @@ pub struct Part2 {
 }
 
 impl Game {
-    pub fn get_minimum_rgb(&self) -> RGB {
-        RGB {
+    pub fn get_minimum_rgb(&self) -> Rgb {
+        Rgb {
             red: self
                 .subsets
                 .iter()
@@ -32,7 +32,7 @@ impl Game {
     }
 }
 
-impl RGB {
+impl Rgb {
     pub fn power(&self) -> u128 {
         self.red as u128 * self.green as u128 * self.blue as u128
     }

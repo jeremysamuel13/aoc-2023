@@ -2,15 +2,12 @@
 pub mod macros;
 
 use std::{
-    error,
     fs::{read_to_string, File},
     io::{BufRead, BufReader, Lines},
     iter::Flatten,
     path::PathBuf,
     time::{Duration, Instant},
 };
-
-use thiserror::Error;
 
 pub struct AnswerInner<T> {
     pub answer: AOCResult<String>,
