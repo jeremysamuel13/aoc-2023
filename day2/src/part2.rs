@@ -1,53 +1,21 @@
+use crate::utils::*;
 use aoc_core::*;
-
-use crate::part1::{Game, Part1, Rgb};
 
 #[derive(Clone)]
 pub struct Part2 {
     games: Vec<Game>,
 }
 
-impl Game {
-    pub fn get_minimum_rgb(&self) -> Rgb {
-        Rgb {
-            red: self
-                .subsets
-                .iter()
-                .max_by_key(|v| v.red)
-                .expect("No subsets?")
-                .red,
-            green: self
-                .subsets
-                .iter()
-                .max_by_key(|v| v.green)
-                .expect("No subsets?")
-                .green,
-            blue: self
-                .subsets
-                .iter()
-                .max_by_key(|v| v.blue)
-                .expect("No subsets?")
-                .blue,
-        }
-    }
-}
-
-impl Rgb {
-    pub fn power(&self) -> u128 {
-        self.red as u128 * self.green as u128 * self.blue as u128
-    }
-}
-
 impl ParseInput for Part2 {
     fn parse_from<T: Iterator<Item = String>>(input: T) -> AOCResult<Self> {
         Ok(Self {
-            games: Part1::parse_from(input)?.games,
+            games: input.map(Game::parse_str).collect(),
         })
     }
 }
 
-impl Part2 {
-    pub fn solve(&mut self) -> AOCResult<String> {
+impl Solvable for Part2 {
+    fn solve(&mut self) -> AOCResult<String> {
         Ok(self
             .games
             .iter()

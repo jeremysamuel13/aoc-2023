@@ -58,13 +58,18 @@ impl Input {
 }
 
 pub trait Solution {
-    type Input1: ParseInput + Clone;
-    type Input2: ParseInput + Clone;
+    type Input1: ParseInput + Clone + Solvable;
+    type Input2: ParseInput + Clone + Solvable;
 
     const DAY: usize;
 
-    fn part_1(&self, input: Self::Input1) -> AOCResult<String>;
-    fn part_2(&self, input: Self::Input2) -> AOCResult<String>;
+    fn part_1(&self, mut input: Self::Input1) -> AOCResult<String> {
+        input.solve()
+    }
+
+    fn part_2(&self, mut input: Self::Input2) -> AOCResult<String> {
+        input.solve()
+    }
 
     fn parse_inp<T: ParseInput + Clone>(&self, input: Input) -> AOCResult<ParsedInput<T>> {
         let now = Instant::now();
@@ -123,4 +128,8 @@ where
     fn parse_from_str<'a, T: Iterator<Item = &'a str>>(input: T) -> AOCResult<Self> {
         Self::parse_from(input.map(|v| v.to_owned()))
     }
+}
+
+pub trait Solvable {
+    fn solve(&mut self) -> AOCResult<String>;
 }

@@ -2,6 +2,7 @@
 macro_rules! days {
     ( $( $x:ident ),+ ) => {
         {
+            #[derive(Debug)]
             pub enum Day {
                 $($x($x),)+
             }

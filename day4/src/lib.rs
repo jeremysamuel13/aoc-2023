@@ -6,13 +6,13 @@ use part1::*;
 use part2::*;
 
 #[derive(Debug, Clone)]
-pub struct Day3;
+pub struct Day4;
 
-impl Solution for Day3 {
+impl Solution for Day4 {
     type Input1 = Part1;
     type Input2 = Part2;
 
-    const DAY: usize = 3;
+    const DAY: usize = 4;
 
     fn part_1(&self, mut input: Self::Input1) -> AOCResult<String> {
         input.solve()

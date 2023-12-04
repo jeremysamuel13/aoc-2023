@@ -1,3 +1,4 @@
+
 use aoc_core::*;
 
 #[derive(Clone)]
@@ -13,8 +14,8 @@ impl ParseInput for Part1 {
     }
 }
 
-impl Part1 {
-    pub fn solve(&mut self) -> AOCResult<String> {
+impl Solvable for Part1 {
+    fn solve(&mut self) -> AOCResult<String> {
         Ok(self
             .lines
             .iter()

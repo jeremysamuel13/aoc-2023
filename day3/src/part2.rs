@@ -1,10 +1,8 @@
+
 use aoc_core::*;
 use itertools::Itertools;
 
-use crate::{
-    parsing::{Element, Sequence},
-    utils::adjacent,
-};
+use crate::utils::{adjacent, Element, Sequence};
 
 #[derive(Clone)]
 pub struct Part2 {
@@ -22,8 +20,8 @@ impl ParseInput for Part2 {
     }
 }
 
-impl Part2 {
-    pub fn solve(&mut self) -> AOCResult<String> {
+impl Solvable for Part2 {
+    fn solve(&mut self) -> AOCResult<String> {
         Ok(self
             .sequences
             .iter()

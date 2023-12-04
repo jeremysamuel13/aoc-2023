@@ -1,3 +1,4 @@
 [alias]
 gen = "generate --path template"
 day = "run --"
+tall = "test --all"

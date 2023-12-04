@@ -1,3 +1,4 @@
+
 use aoc_core::*;
 
 #[derive(Clone)]
@@ -13,8 +14,8 @@ impl ParseInput for Part2 {
     }
 }
 
-impl Part2 {
-    pub fn solve(&mut self) -> AOCResult<String> {
+impl Solvable for Part2 {
+    fn solve(&mut self) -> AOCResult<String> {
         const NUMS: [&str; 10] = [
             "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
         ];
