@@ -17,13 +17,15 @@ pub struct AnswerInner<T> {
 
 impl<T> AnswerInner<T> {
     pub fn print_answer<const PART: u8>(&self) {
+        println!("Part {PART}:");
         println!(
-            "Part {PART}:\n{}",
+            "\tAnswer: {}",
             self.answer
                 .as_ref()
                 .map(|v| v.to_owned())
                 .unwrap_or_else(|e| format!("Error running part 1: {e}"))
         );
+        println!("\tTime elapsed: {}μs", self.time.as_micros())
     }
 }
 

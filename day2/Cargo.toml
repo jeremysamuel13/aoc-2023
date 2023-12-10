@@ -9,4 +9,4 @@ authors = ["jeremysamuel13 <70209502+jeremysamuel13@users.noreply.github.com>"]
 
 [dependencies]
 aoc_core = { path = "../aoc_core" }
-strum = { version = "0.25.0", features = ["derive"] }
+strum = { workspace = true, features = ["derive"] }
