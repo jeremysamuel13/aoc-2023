@@ -12,12 +12,16 @@ impl From<(&isize, &isize)> for Race {
     }
 }
 
+pub fn f64_is_int(x: f64) -> bool {
+    x.fract() < f64::EPSILON
+}
+
 impl Race {
     fn distance(&self, t: isize) -> isize {
         -(t.pow(2)) + (self.time * t)
     }
 
-    fn bounds(&self) -> RangeInclusive<isize> {
+    fn bounds(&self) -> (f64, f64) {
         /*
         Given the following:
 
@@ -57,26 +61,15 @@ impl Race {
         }
 
         // only care about whole numbers
-        (roota.ceil() as isize)..=(rootb.floor() as isize)
+        (roota, rootb)
     }
 
     pub fn possible_wins(&self) -> isize {
-        let bounds = self.bounds();
+        let (start, end) = match self.bounds() {
+            (a, b) if f64_is_int(a) => (a + 1.0, b - 1.0),
+            (a, b) => (a.ceil(), b.floor()),
+        };
 
-        let end = bounds.end();
-        let start = bounds.start();
-
-        let base = end - start + 1;
-
-        // note: self.distance(start) == self.distance(end)
-        if self.distance(*start) > self.distance {
-            base
-        } else {
-            // min distance from range is self.distance
-
-            // if we find self.distance at the ends of the range, then we just remove and count the rest.
-            // this is because all other values in the range are guaranteed to be larger than the root values due to the characteristics of quadratic functions.
-            base - 2
-        }
+        end as isize - start as isize + 1
     }
 }
