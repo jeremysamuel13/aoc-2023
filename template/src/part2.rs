@@ -1,7 +1,7 @@
 use crate::utils::*;
 use aoc_core::*;
 
-#[derive(Clone)]
+#[derive(Clone, Debug)]
 pub struct Part2 {}
 
 impl ParseInput for Part2 {

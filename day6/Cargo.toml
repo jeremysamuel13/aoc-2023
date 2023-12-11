@@ -1,0 +1,12 @@
+[package]
+name = "day6"
+version = "0.1.0"
+edition = "2021"
+description = ""
+authors = ["jeremysamuel13 <70209502+jeremysamuel13@users.noreply.github.com>"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+aoc_core = { path = "../aoc_core" }
+itertools = { workspace = true }
