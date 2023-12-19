@@ -10,8 +10,8 @@ impl ParseInput for Part2 {
     fn parse_from<T: Iterator<Item = String>>(input: T) -> AOCResult<Self> {
         let [time, distance] = input
             .flat_map(|line| {
-                line.replace(" ", "")
-                    .split_once(":")
+                line.replace(' ', "")
+                    .split_once(':')
                     .expect("Failed to split at color")
                     .1
                     .parse::<isize>()

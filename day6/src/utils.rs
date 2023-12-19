@@ -1,5 +1,3 @@
-use std::ops::RangeInclusive;
-
 #[derive(Clone, Debug)]
 pub struct Race {
     time: isize,
@@ -17,10 +15,6 @@ pub fn f64_is_int(x: f64) -> bool {
 }
 
 impl Race {
-    fn distance(&self, t: isize) -> isize {
-        -(t.pow(2)) + (self.time * t)
-    }
-
     fn bounds(&self) -> (f64, f64) {
         /*
         Given the following:

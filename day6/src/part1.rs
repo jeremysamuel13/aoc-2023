@@ -1,6 +1,5 @@
 use crate::utils::*;
 use aoc_core::*;
-use itertools::Itertools;
 
 #[derive(Clone, Debug)]
 pub struct Part1 {

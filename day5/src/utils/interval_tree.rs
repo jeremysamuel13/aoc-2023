@@ -30,7 +30,7 @@ impl Entry {
     }
 
     pub fn contains(&self, start: usize, v: &usize) -> bool {
-        (start..self.end).contains(&v)
+        (start..self.end).contains(v)
     }
 
     pub fn translate(&self, v: usize) -> usize {
