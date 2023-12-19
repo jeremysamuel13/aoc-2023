@@ -132,7 +132,8 @@ impl<const PART1: bool> Hand<PART1> {
 
 impl<const PART1: bool> From<&str> for Hand<PART1> {
     fn from(cards: &str) -> Self {
-        assert!(cards.len() == 5);
+        assert_eq!(cards.len(), 5);
+
         Self {
             cards: cards.chars().map(Card::from).collect(),
         }
