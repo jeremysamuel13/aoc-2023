@@ -14,6 +14,7 @@ version = "0.1.0"
 dependencies = [
  "aoc_core",
  "day1",
+ "day10",
  "day2",
  "day3",
  "day4",
@@ -21,6 +22,7 @@ dependencies = [
  "day6",
  "day7",
  "day8",
+ "day9",
 ]
 
 [[package]]
@@ -53,6 +55,14 @@ name = "day1"
 version = "0.1.0"
 dependencies = [
  "aoc_core",
+]
+
+[[package]]
+name = "day10"
+version = "0.1.0"
+dependencies = [
+ "aoc_core",
+ "itertools",
 ]
 
 [[package]]
@@ -112,6 +122,14 @@ dependencies = [
  "aoc_core",
  "itertools",
  "num",
+]
+
+[[package]]
+name = "day9"
+version = "0.1.0"
+dependencies = [
+ "aoc_core",
+ "itertools",
 ]
 
 [[package]]
